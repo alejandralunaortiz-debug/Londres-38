@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reseña Londres 38</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --paper: #ffffff;
+      --ink: #111111;
+      --muted: #666666;
+      --accent: #f4a261;
+      --accent-strong: #e76f00;
+      --accent-soft: #fff1e3;
+      --line: #f0d6bd;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(244, 162, 97, 0.22), transparent 34rem),
+        linear-gradient(180deg, #ffffff 0%, #fff8f1 100%);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      font-weight: 900;
+    }
+
+    .topbar nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.88rem;
+    }
+
+    .topbar a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .topbar a:hover {
+      color: var(--accent-strong);
+      border-bottom-color: var(--accent-strong);
+    }
+
+    .wrapper {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 46px 22px 80px;
+    }
+
+    .hero {
+      padding: 54px 0 30px;
+      max-width: 900px;
+    }
+
+    .label {
+      display: inline-block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      color: var(--accent-strong);
+      background: var(--accent-soft);
+      padding: 7px 11px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      max-width: 880px;
+      color: #000000;
+    }
+
+    .author-block {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 420px;
+    }
+
+    .author-block strong {
+      display: block;
+      font-size: 1rem;
+      color: #000000;
+      margin-bottom: 2px;
+    }
+
+    .author-block span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 30px 0 34px;
+    }
+
+    .meta-item {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .meta-item h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.75rem;
+      color: var(--accent-strong);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .meta-item p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .paper {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: clamp(26px, 5vw, 62px);
+      margin-top: 28px;
+    }
+
+    .paper-header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 22px;
+      margin-bottom: 28px;
+    }
+
+    .paper-header h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #000000;
+    }
+
+    .paper-header p {
+      color: var(--muted);
+      margin-top: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    article p {
+      font-size: clamp(1.02rem, 1.6vw, 1.14rem);
+      margin-bottom: 20px;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .dropcap::first-letter {
+      float: left;
+      font-size: 4.7rem;
+      line-height: 0.82;
+      padding-right: 10px;
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    sup {
+      color: var(--accent-strong);
+      font-weight: 700;
+      font-size: 0.72em;
+    }
+
+    .references {
+      margin-top: 40px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .references h2,
+    .notes h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--accent-strong);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+
+    .references p,
+    .notes li {
+      font-size: 0.94rem;
+      color: #38424d;
+      margin-bottom: 12px;
+      line-height: 1.65;
+    }
+
+    .notes {
+      margin-top: 36px;
+      background: var(--accent-soft);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .notes ol {
+      padding-left: 22px;
+    }
+
+    footer {
+      margin-top: 38px;
+      text-align: center;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+    }
+
+    @media (max-width: 860px) {
+      .topbar-inner {
+        display: block;
+      }
+
+      .topbar nav {
+        margin-top: 10px;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      article p {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body id="inicio">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Reseña académica</div>
+      <nav aria-label="Navegación principal">
+        <a href="#resena">Reseña</a>
+        <a href="#notas">Notas</a>
+        <a href="#referencias">Referencias</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="hero">
+      <span class="label">Humanidades Digitales</span>
+      <h1>Londres 38 de la dictadura chilena a la reconstrucción digital de la memoria</h1>
+      <div class="author-block">
+        <strong>Mayra Alejandra Luna</strong>
+        <span>Fundamentos de Humanidades Digitales</span>
+        <span>Universidad de los Andes</span>
+      </div>
+    </section>
+
+    <section id="metadatos" class="meta-grid" aria-label="Metadatos del proyecto reseñado">
+      <div class="meta-item">
+        <h2>Proyecto</h2>
+        <p>Archivo Digital de Londres 38, espacio de memorias.</p>
+      </div>
+      <div class="meta-item">
+        <h2>Ubicación</h2>
+        <p>Santiago de Chile, Chile.</p>
+      </div>
+      <div class="meta-item">
+        <h2>Disciplinas</h2>
+        <p>Historia, archivística, estudios de memoria, derechos humanos, ciencia de la información, comunicación pública y pedagogía social.</p>
+      </div>
+      <div class="meta-item">
+        <h2>Vigencia</h2>
+        <p>Organización desde 2009, corporación desde 2018 y Archivo Digital lanzado en 2022.</p>
+      </div>
+    </section>
+
+    <section id="resena" class="paper">
+      <div class="paper-header">
+        <h2>Texto de la reseña</h2>
+        <p>Versión en lectura continua con notas al pie y referencias.</p>
+      </div>
+
+      <article>
+        <p class="dropcap">El proyecto reseñado es el Archivo Digital de Londres 38, espacio de memorias, ubicado en Santiago de Chile. Su vigencia es actual: el sitio de memoria se organiza desde 2009 como Organización Comunitaria Funcional, en 2018 se transformó en corporación y el Archivo Digital fue lanzado en 2022<sup>1</sup>. Como proyecto de humanidades digitales latinoamericano, articula historia, archivística, estudios de memoria, derechos humanos, ciencia de la información, comunicación pública y pedagogía social. Esta interrelación disciplinaria es central porque el proyecto no se limita a conservar documentos: organiza evidencia, activa debates públicos y convierte un lugar marcado por la violencia dictatorial en infraestructura digital para la memoria.</p>
+
+        <p>Para comprender su sentido, es necesario partir de la historia material de la casa. Londres 38 fue construido en 1925 para uso residencial y, en 1970, fue adquirido por José Gutiérrez y otras personas en representación del Partido Socialista, con el fin de usarlo como sede de la Seccional de la Octava Comuna. Después del golpe militar, el inmueble fue utilizado por la Dirección de Inteligencia Nacional – DINA - como centro clandestino de represión. Por eso, la página del proyecto no organiza su contenido solo como archivo, sino también como recorrido histórico: sus secciones remiten a la DINA, al Instituto O’Higginiano, a la recuperación de Londres 38, al memorial y a su transformación en espacio de memorias<sup>2</sup>.</p>
+
+        <p>Esta dimensión histórica se vuelve más concreta cuando el proyecto identifica a las víctimas y protagonistas vinculados con el lugar. Hasta donde se ha podido establecer, 98 personas que permanecieron prisioneras en Londres 38 fueron ejecutadas, hechas desaparecer o murieron posteriormente como consecuencia de las torturas. La información disponible también muestra su composición política y generacional: 64 militaban en el MIR, 18 en el Partido Comunista, 10 en el Partido Socialista, 2 en la Liga Comunista, una persona estaba vinculada a organizaciones uruguayas, una habría estado relacionada con el Partido Nacional y 5 no tenían militancia reconocida. Además, 80 tenían menos de 30 años, 43 no alcanzaban los 25 y 8 eran menores de 20. Las detenciones registradas van del 16 de octubre de 1973 al 5 de septiembre de 1974<sup>3</sup>.</p>
+
+        <p>En consecuencia, el Archivo Digital reúne documentación producida por la propia organización, junto con materiales creados o donados por otras personas e instituciones<sup>4</sup>. Su objetivo es ofrecer acceso a información para la reflexión y la acción sobre las memorias sociales y políticas vinculadas con la historia reciente de Chile, desde la década del sesenta hasta el presente, con énfasis en la dictadura. Además, valora los archivos como herramientas para conocer el pasado, ejercer derechos, especialmente el derecho a la verdad, y transformar el presente. Guiado por el principio de máxima difusión y acceso, pone a disposición cerca de 5.200 documentos en diversos formatos<sup>5</sup>.</p>
+
+        <p>Ahora bien, su contexto institucional muestra una relación compleja entre autonomía y sostenibilidad pública. Londres 38 está integrado por familiares de víctimas, sobrevivientes de la represión, compañeros y compañeras de militancia, activistas de derechos humanos y militantes de la memoria. En 2009 se constituyó como Organización Comunitaria Funcional Londres 38, Casa de la memoria, y en 2018 se transformó en Corporación Londres 38, espacio de memorias. Aunque se define como autónoma del Estado, desde 2009 recibe financiamiento público, primero del Ministerio de Educación y luego del Servicio Nacional del Patrimonio Cultural.</p>
+
+        <p>Asimismo, el contexto técnico-tecnológico se sostiene en AtoM<sup>6</sup>, una aplicación web de código abierto para descripción archivística y acceso a documentos digitales. Esta elección muestra una forma situada de innovación: el proyecto no crea necesariamente un software propio, pero adapta una herramienta abierta a necesidades archivísticas, políticas y comunitarias. A través de esta infraestructura, los documentos pueden organizarse en fondos y colecciones, describirse con criterios normalizados, consultarse en línea y descargarse. Así, la tecnología no aparece como adorno, sino como condición que permite relacionar archivo, búsqueda, acceso público y preservación.</p>
+
+        <p>Sin embargo, el proyecto también debe leerse desde su contexto sociotécnico. Para funcionar, depende de conectividad, servidores, mantenimiento digital, criterios de preservación y capacidades humanas de catalogación. La página no detalla toda su arquitectura técnica, pero sí permite identificar una decisión relevante: usar una plataforma abierta y accesible para reducir barreras de consulta. Frente a la dispersión documental, el cierre de archivos estatales o las desigualdades de acceso a la información, Londres 38 responde con una infraestructura digital que centraliza materiales y amplía el alcance del sitio físico más allá de Santiago.</p>
+
+        <p>Por otra parte, el grupo de creación y sostenimiento responde a una lógica colectiva. La organización opera mediante un equipo, miembros de la corporación, áreas de trabajo y comisiones, entre ellas la relacionada con Archivo Digital. Esta estructura es coherente con el carácter político y comunitario del proyecto, porque la memoria no se presenta como propiedad exclusiva de especialistas, sino como una construcción situada entre sobrevivientes, familiares, activistas, investigadoras, trabajadores del archivo y ciudadanía interesada.</p>
+
+        <p>En cuanto a los usuarios, el proyecto se dirige a investigadores, estudiantes, docentes, periodistas, organizaciones sociales, familiares de víctimas, activistas de derechos humanos y público general. La coherencia lingüística es alta, pues el sitio está en español y se orienta a comunidades chilenas y latinoamericanas. Además, la navegación del portal —con menús como “Qué hacemos”, “Londres 38 y su historia”, “Víctimas y protagonistas”, “Actualidad”, “Especiales” y “Archivo Digital”— muestra que el público no solo consulta documentos, sino que puede recorrer relatos, campañas, noticias y materiales pedagógicos.</p>
+
+        <p>El Archivo Digital se integra con otros proyectos y redes de memoria mediante campañas como “No Más Archivos Secretos”, actividades públicas, publicaciones, exposiciones y vínculos con otros espacios de derechos humanos<sup>7</sup>. También favorece la consulta, descarga y reutilización responsable de los objetos digitalizados, aunque no necesariamente su edición libre. En suma, Londres 38 es un proyecto sólido de humanidades digitales latinoamericanas porque une archivo, tecnología y justicia. Su aporte principal no está solo en digitalizar documentos, sino en reconstruir una memoria pública capaz de disputar el olvido y sostener el derecho a la verdad.</p>
+      </article>
+
+      <section id="notas" class="notes">
+        <h2>Notas al pie</h2>
+        <ol>
+          <li>Londres 38, espacio de memorias, “Quiénes somos,” <em>Londres 38</em>, consultado el 6 de mayo de 2026, https://www.londres38.cl/1937/w3-propertyvalue-37489.html.</li>
+          <li>Londres 38, espacio de memorias, “Historia,” <em>Londres 38</em>, consultado el 6 de mayo de 2026, https://www.londres38.cl/1937/w3-propertyname-3006.html.</li>
+          <li>Londres 38, espacio de memorias, “Víctimas y protagonistas,” <em>Londres 38</em>, consultado el 6 de mayo de 2026, https://www.londres38.cl/1937/w3-propertyname-2749.html.</li>
+          <li>Londres 38, espacio de memorias, “Archivo digital,” <em>Londres 38</em>, consultado el 6 de mayo de 2026, https://www.londres38.cl/1937/w3-propertyvalue-37506.html.</li>
+          <li>Londres 38, espacio de memorias, <em>Archivo Digital Londres 38</em>, consultado el 6 de mayo de 2026, http://archivodigital.londres38.cl/index.php/.</li>
+          <li>Access to Memory, “AtoM: Open Source Archival Description Software,” consultado el 6 de mayo de 2026, https://www.accesstomemory.org/es/.</li>
+          <li>Londres 38, espacio de memorias, “No más Archivos Secretos,” <em>Londres 38</em>, consultado el 6 de mayo de 2026, https://www.londres38.cl/1937/w3-article-96891.html.</li>
+        </ol>
+      </section>
+
+      <section id="referencias" class="references">
+        <h2>Referencias</h2>
+        <p>Access to Memory. “AtoM: Open Source Archival Description Software.” Consultado el 6 de mayo de 2026. https://www.accesstomemory.org/es/.</p>
+        <p>Londres 38, espacio de memorias. “Archivo digital.” <em>Londres 38</em>. Consultado el 6 de mayo de 2026. https://www.londres38.cl/1937/w3-propertyvalue-37506.html.</p>
+        <p>Londres 38, espacio de memorias. “Historia.” <em>Londres 38</em>. Consultado el 6 de mayo de 2026. https://www.londres38.cl/1937/w3-propertyname-3006.html.</p>
+        <p>Londres 38, espacio de memorias. “No más Archivos Secretos.” <em>Londres 38</em>. Consultado el 6 de mayo de 2026. https://www.londres38.cl/1937/w3-article-96891.html.</p>
+        <p>Londres 38, espacio de memorias. “Quiénes somos.” <em>Londres 38</em>. Consultado el 6 de mayo de 2026. https://www.londres38.cl/1937/w3-propertyvalue-37489.html.</p>
+        <p>Londres 38, espacio de memorias. “Víctimas y protagonistas.” <em>Londres 38</em>. Consultado el 6 de mayo de 2026. https://www.londres38.cl/1937/w3-propertyname-2749.html.</p>
+      </section>
+    </section>
+
+    <footer>
+      <p>Página creada por Mayra Alejandra Luna para la materia Fundamentos de Humanidades Digitales de la Universidad de los Andes.</p>
+    </footer>
+  </main>
+
+  <a class="back-to-top" href="#inicio" aria-label="Volver al inicio">↑</a>
+</body>
+</html>
+
